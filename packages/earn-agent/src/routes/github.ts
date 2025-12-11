@@ -10,7 +10,7 @@ const reviewRequestSchema = z.object({
   bountyRequirements: z.string(),
 });
 
-router.post('/review', async (req: Request, res: Response) => {
+router.post('/review', async (req: Request, res: Response): Promise<void> => {
   try {
     const { submissionUrl, bountyId, bountyRequirements } = reviewRequestSchema.parse(req.body);
 
@@ -28,11 +28,12 @@ router.post('/review', async (req: Request, res: Response) => {
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         error: 'Invalid request data',
         details: error.errors,
       });
+      return;
     }
 
     console.error('Error initiating review:', error);
@@ -44,7 +45,7 @@ router.post('/review', async (req: Request, res: Response) => {
 });
 
 // GET endpoint to retrieve review results
-router.get('/review/:submissionUrl/:bountyId', async (req: Request, res: Response) => {
+router.get('/review/:submissionUrl/:bountyId', async (req: Request, res: Response): Promise<void> => {
   try {
     const { submissionUrl, bountyId } = req.params;
     const { getReviewResults } = await import('../database/reviews');
@@ -55,10 +56,11 @@ router.get('/review/:submissionUrl/:bountyId', async (req: Request, res: Respons
     );
 
     if (!result) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         error: 'Review not found',
       });
+      return;
     }
 
     res.json({

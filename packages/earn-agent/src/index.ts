@@ -17,10 +17,19 @@ async function main() {
 
     // Start HTTP server
     const server = createServer();
-    const port = process.env.PORT || 3001;
+    const port = parseInt(process.env.PORT || '3001', 10);
 
     server.listen(port, () => {
       console.log(`🚀 Earn Agent service running on port ${port}`);
+    }).on('error', (error: NodeJS.ErrnoException) => {
+      if (error.code === 'EADDRINUSE') {
+        console.error(`❌ Port ${port} is already in use.`);
+        console.error(`   Try: lsof -ti:${port} | xargs kill -9`);
+        console.error(`   Or change the port in .env: PORT=3002`);
+      } else {
+        console.error('Server error:', error);
+      }
+      process.exit(1);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

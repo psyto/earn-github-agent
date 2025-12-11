@@ -1,12 +1,9 @@
+// @ts-ignore - generateObject is exported but TypeScript may not resolve it correctly
 import { generateObject } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 import { z } from 'zod';
 import { ReviewContext } from '../../types/jobs';
 import { ReviewResult } from '../../types/review';
-
-const openai = createOpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const ReviewResultSchema = z.object({
   score: z.number().min(0).max(100),
@@ -21,8 +18,17 @@ export async function generateReview(context: ReviewContext): Promise<ReviewResu
   const prompt = buildReviewPrompt(context);
 
   try {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY environment variable is not set');
+    }
+
+    // Create OpenAI provider with API key
+    const openaiProvider = createOpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+
     const { object } = await generateObject({
-      model: openai('gpt-4-turbo-preview'),
+      model: openaiProvider('gpt-4-turbo-preview'),
       schema: ReviewResultSchema,
       prompt,
     });

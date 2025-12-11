@@ -1,8 +1,11 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { getDatabase } from './index';
+import { initializeDatabase, getDatabase } from './index';
 
 async function runMigrations() {
+  // Initialize database connection first
+  await initializeDatabase();
+  
   const db = getDatabase();
 
   // Read migration file

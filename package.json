@@ -7,6 +7,11 @@
     "packages/*"
   ],
   "scripts": {
+    "setup:env": "bash scripts/setup-env.sh",
+    "mysql:docker": "bash scripts/start-mysql-docker.sh",
+    "mysql:homebrew": "bash scripts/start-mysql-homebrew.sh",
+    "redis:start": "bash scripts/start-redis.sh",
+    "kill:port": "bash scripts/kill-port.sh",
     "dev:agent": "npm run dev --workspace=packages/earn-agent",
     "dev:frontend": "npm run dev --workspace=packages/earn",
     "build": "npm run build --workspaces",
@@ -19,6 +24,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "ai": "^5.0.110"
   }
 }
-
