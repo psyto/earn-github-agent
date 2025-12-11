@@ -1,0 +1,24 @@
+{
+  "name": "earn-github-agent",
+  "version": "1.0.0",
+  "description": "AI-Powered GitHub Auto-Review System for Superteam Earn",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:agent": "npm run dev --workspace=packages/earn-agent",
+    "dev:frontend": "npm run dev --workspace=packages/earn",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
