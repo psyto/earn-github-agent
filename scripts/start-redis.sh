@@ -33,3 +33,4 @@ else
   echo "⚠️  Redis may not be fully started yet. Try: redis-cli ping"
 fi
 
+

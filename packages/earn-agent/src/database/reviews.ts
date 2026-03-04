@@ -48,3 +48,4 @@ export async function getReviewResults(submissionUrl: string, bountyId: string) 
   return Array.isArray(rows) && rows.length > 0 ? rows[0] : null;
 }
 
+

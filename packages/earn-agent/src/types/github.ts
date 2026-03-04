@@ -45,3 +45,4 @@ export interface GitHubRepoContext {
 
 export type GitHubContext = GitHubPRContext | GitHubRepoContext;
 
+

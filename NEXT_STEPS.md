@@ -169,3 +169,4 @@ When ready for production:
 5. Deploy backend and frontend separately
 6. Set up monitoring and logging
 
+

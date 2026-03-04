@@ -39,3 +39,4 @@ echo ""
 echo "📝 If you set a password, update packages/earn-agent/.env:"
 echo "   DB_PASSWORD=your_password"
 
+

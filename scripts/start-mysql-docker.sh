@@ -53,3 +53,4 @@ echo ""
 echo "🧪 Test connection:"
 echo "   mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e 'SHOW DATABASES;'"
 
+

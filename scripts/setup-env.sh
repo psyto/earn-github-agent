@@ -46,3 +46,4 @@ echo "2. Edit packages/earn/.env if you need to change the backend URL"
 echo ""
 echo "3. See ENV_SETUP.md for detailed instructions"
 
+

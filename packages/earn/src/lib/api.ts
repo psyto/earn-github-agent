@@ -22,3 +22,4 @@ export async function getReviewResults(submissionUrl: string, bountyId: string) 
   return response.data;
 }
 
+

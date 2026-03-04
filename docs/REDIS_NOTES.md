@@ -63,3 +63,4 @@ The `redis-server` binary exists at `/opt/homebrew/opt/redis/bin/redis-server` b
 
 Since Redis is already running as a service, you can use `redis-cli` (which is in PATH) to interact with it.
 
+
